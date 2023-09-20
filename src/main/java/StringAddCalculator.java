@@ -1,5 +1,3 @@
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,17 +16,17 @@ public class StringAddCalculator {
 
         String[] split = _split(targetString, customDelimiter);
         List<Integer> numberList = _convert(split);
+        _validateContainsNegative(numberList);
 
         return getSum(numberList);
     }
+
 
     private static String _getCustomDelimiter(String paramString) {
 
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(paramString);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            String[] tokens = m.group(2).split(customDelimiter);
-            return customDelimiter;
+            return m.group(1);
         }
 
         return StringUtils.EMPTY_STRING;
@@ -39,9 +37,7 @@ public class StringAddCalculator {
 
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(paramString);
         if (m.find()) {
-            String customDelimiter = m.group(1);
-            String token = m.group(2);
-            return token;
+            return m.group(2);
         }
 
         return paramString;
@@ -56,10 +52,20 @@ public class StringAddCalculator {
 
     private static List<Integer> _convert(String[] array){
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            list.add(Integer.parseInt(array[i]));
+        for (String s : array) {
+            list.add(Integer.parseInt(s));
         }
         return list;
+    }
+
+
+    private static void _validateContainsNegative(List<Integer> numberList) {
+        if(_isContainsNegative(numberList)){
+            throw new RuntimeException();
+        }
+    }
+    private static boolean _isContainsNegative(List<Integer> numberList) {
+        return numberList.stream().anyMatch(number -> number < 0);
     }
 
     private static int getSum(List<Integer> numbers) {
