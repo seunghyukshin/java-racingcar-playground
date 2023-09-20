@@ -3,8 +3,10 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringAddCalculator {
+
 
     public static int splitAndSum(String paramString) {
         if(StringUtils.isEmpty(paramString)){
@@ -12,26 +14,39 @@ public class StringAddCalculator {
         }
 
         String customDelimiter = _getCustomDelimiter(paramString);
+        String targetString = _getTargetString(paramString);
 
-        String[] split = _split(paramString, customDelimiter);
+        String[] split = _split(targetString, customDelimiter);
         List<Integer> numberList = _convert(split);
 
         return getSum(numberList);
     }
 
     private static String _getCustomDelimiter(String paramString) {
-        String regex = "//.\n";
 
-        if(!paramString.matches(regex)){
-            return StringUtils.EMPTY_STRING;
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(paramString);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String[] tokens = m.group(2).split(customDelimiter);
+            return customDelimiter;
         }
 
-        String[] split = paramString.split(regex);
-
-        System.out.println(split[0]);
-        System.out.println(split[1]);
-        return split[0];
+        return StringUtils.EMPTY_STRING;
     }
+
+    private static String _getTargetString(String paramString) {
+
+
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(paramString);
+        if (m.find()) {
+            String customDelimiter = m.group(1);
+            String token = m.group(2);
+            return token;
+        }
+
+        return paramString;
+    }
+
 
     private static String[] _split(String paramString, String customDelimiter){
         String regex = "[,:" + customDelimiter + "]";
