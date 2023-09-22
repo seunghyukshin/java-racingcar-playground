@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    List<Car> carList = new ArrayList<>();
-    public Race(String[] carNameArray) {
+    private final List<Car> carList;
 
-        for(String carName : carNameArray){
-            Car car = new Car(carName);
+    public Race(List<Car> carList) {
+        this.carList = carList;
+    }
 
-            this.carList.add(car);
-        }
+    public String toString(){
+        return "";
     }
 }

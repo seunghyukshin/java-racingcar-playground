@@ -6,4 +6,12 @@ public class Car {
         this.name = name;
         this.position = 0;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name=" + name +
+                ", position=" + position +
+                '}';
+    }
 }
