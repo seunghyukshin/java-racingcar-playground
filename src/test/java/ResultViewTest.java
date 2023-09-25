@@ -5,23 +5,28 @@ import utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaceTest {
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-    Race race;
+public class ResultViewTest {
+
+    List<Car> carList;
 
     @BeforeEach
     public void init() {
         String strings = "pobi,crong,honux";
         String[] carStrings = StringUtils.splitByDelimiter(strings, ",");
-        List<Car> carList = new ArrayList<>();
+        carList = new ArrayList<>();
         for (String carName : carStrings) {
             carList.add(new Car(carName));
         }
-        race = new Race(carList);
     }
 
     @Test
-    public void Race_turnOn_5() {
-        race.turnOn(5);
+    public void ResultView_concatWithDelimiter() {
+        String[] names = {"a", "bb", "cad"};
+
+        String result = StringUtils.concatWithDelimiter(names, ", ");
+        assertThat(result).isEqualTo("a, bb, cad");
+
     }
 }

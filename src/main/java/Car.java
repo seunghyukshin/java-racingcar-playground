@@ -1,12 +1,13 @@
+import car.Name;
 import enums.ScoreEnum;
 import utils.RandomUtils;
 
 public class Car {
-    String name;
+    Name name;
     int position;
 
     public Car(String name) {
-        this.name = name;
+        this.name = new Name(name);
         this.position = 0;
     }
 
@@ -48,4 +49,11 @@ public class Car {
         return sb.toString();
     }
 
+    public int match(Car b) {
+        return Math.max(this.position, b.position);
+    }
+
+    public boolean isEqualPosition(int number) {
+        return this.position == number;
+    }
 }
