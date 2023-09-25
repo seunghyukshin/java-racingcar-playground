@@ -35,7 +35,7 @@ public class Car {
         this.position++;
     }
 
-    public String getResult() {
+    public String getStatus() {
         return this.name + ":" + getHyphen();
     }
 

@@ -16,13 +16,23 @@ public class Race {
     public void turnOn(int N) {
         for (int n = 0; n < N; n++) {
             _turnOn();
+            System.out.println();
         }
     }
 
-    // 1바퀴 돌때
-    private void _turnOn(){
-        carList.forEach(Car::drive);
-        // TPODO : car.getResult 안에 넣기
+    /***
+     *한 바퀴 돌때
+     * 1. Car 전진
+     * 2. Car상태 출력
+     * 3.
+     */
+    private void _turnOn() {
+        carList.forEach(car -> {
+            car.drive();
+            ResultView.printStatus(car);
+        });
+
+        System.out.println();
     }
 
 }
