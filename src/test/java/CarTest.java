@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +29,7 @@ public class CarTest {
         }
         Race race = new Race(carList);
 
+        // TODO : PASS해야함
+        assertThat(race).isEqualTo("Car{name=pobi, position=0}");
     }
 }
