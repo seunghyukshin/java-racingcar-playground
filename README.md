@@ -7,7 +7,7 @@
 
 ### 실행
 - [ ] 0~9 랜덤한수 생성 `RandomUtils.generateSinglPositiveNumber(`
-- [ ] 4보다 크다면 전진 `Car.position ++`
+- [x] 4보다 크다면 전진 `Car.position ++`
 - [ ] 가장 큰 position 가진 Car 목록 추출 
 
 ### 출력
