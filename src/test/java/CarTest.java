@@ -2,6 +2,7 @@ import model.Car;
 import model.Position;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
+import strategy.MovingStrategy;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -9,11 +10,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class CarTest {
     @Test
     public void Car_Move() {
+
         Car pobiCar = new Car("pobi");
-        pobiCar.move(3);
+        pobiCar.move(new MovingStrategy(4));
 
         Car crongCar = new Car("crong");
-        crongCar.move(5);
+        crongCar.move(new MovingStrategy(5));
 
         Position position = new Position(1);
         assertThat(pobiCar.isEqualPosition(position)).isFalse();

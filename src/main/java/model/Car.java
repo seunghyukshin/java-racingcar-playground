@@ -1,6 +1,8 @@
 package model;
 
 
+import strategy.MovingStrategy;
+
 public class Car {
     private Name name;
     private Position position;
@@ -10,14 +12,8 @@ public class Car {
         this.position = new Position();
     }
 
-//    public void move(MovingStrategy movingStrategy) {
-//        if (movingStrategy.isPossibleMoving()) {
-//            position.add();
-//        }
-//    }
-
-    public void move(int number) {
-        if (number > 4) {
+    public void move(MovingStrategy movingStrategy) {
+        if (movingStrategy.isPossibleMoving()) {
             position.add();
         }
     }
