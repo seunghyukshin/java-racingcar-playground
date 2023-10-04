@@ -2,7 +2,7 @@ package model;
 
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable<Position> {
     private int position;
 
     public Position(int position) {
@@ -35,5 +35,16 @@ public class Position {
         return "model.Position{" +
                 "position=" + position +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        if (o.position > this.position) {
+            return -1;
+        }
+        if (o.position < this.position) {
+            return 1;
+        }
+        return 0;
     }
 }

@@ -23,6 +23,12 @@ public class CarTest {
     }
 
     @Test
+    public void Car_getMaxPosition(){
+        Car car = new Car("pobi", new Position(5));
+
+    }
+
+    @Test
     public void Car_5글자초과검증() {
         assertThatThrownBy(() -> new Car("pobizzang")).isInstanceOf(RuntimeException.class);
     }

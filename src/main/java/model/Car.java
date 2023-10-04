@@ -8,8 +8,15 @@ public class Car {
     private Position position;
 
     public Car(String name) {
-        this.name = new Name(name);
-        this.position = new Position();
+        this(new Name(name), new Position());
+    }
+    public Car(String name, Position position) {
+        this(new Name(name), position);
+    }
+
+    public Car(Name name, Position position){
+        this.name = name;
+        this.position = position;
     }
 
     public void move(MovingStrategy movingStrategy) {
@@ -20,5 +27,9 @@ public class Car {
 
     public boolean isEqualPosition(Position position) {
         return this.position.equals(position);
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }
